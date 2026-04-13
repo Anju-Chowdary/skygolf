@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login – SkyGolf</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+<body class="login-body">
+
+  <!-- Ambient glow orbs -->
+  <div class="login-orb login-orb-1"></div>
+  <div class="login-orb login-orb-2"></div>
+
+  <div class="login-wrapper">
+    <div class="login-card">
+
+      <!-- Brand mark -->
+      <div class="login-brand">
+        <div class="login-brand-mark">SG</div>
+        <div class="login-brand-copy">
+          <strong>SkyGolf</strong>
+          <span>Club &amp; Kitchen</span>
+        </div>
+      </div>
+
+      <div class="login-rule"></div>
+
+      <h1 class="login-title">Welcome Back</h1>
+      <p class="login-subtitle">Enter your details to continue</p>
+
+      <!-- Step 1 -->
+      <div class="login-step" id="step1">
+        <div class="input-group">
+          <input type="text" id="name" placeholder=" " required autocomplete="name">
+          <label for="name">Full Name</label>
+        </div>
+        <div class="input-group">
+          <input type="tel" id="phone" placeholder=" " required autocomplete="tel">
+          <label for="phone">Phone Number</label>
+        </div>
+        <button class="login-btn-primary" id="sendBtn" onclick="sendOTP()">Send OTP</button>
+      </div>
+
+      <!-- Step 2: revealed after OTP sent -->
+      <div class="login-step otp-step" id="step2">
+        <div class="otp-label">
+          <span class="otp-star">✦</span>
+          <span>OTP sent — check your phone</span>
+        </div>
+        <div class="input-group">
+          <input type="text" id="otp" placeholder=" " required inputmode="numeric" maxlength="6" autocomplete="one-time-code">
+          <label for="otp">Enter OTP</label>
+        </div>
+        <button class="login-btn-primary" id="verifyBtn" onclick="verifyOTP()">Verify &amp; Enter</button>
+        <button class="login-btn-ghost" onclick="resetLogin()">← Change details</button>
+      </div>
+
+      <p id="message" class="login-message"></p>
+
+    </div>
+  </div>
+
+  <script src="./js/config.js"></script>
+  <script src="./js/login.js"></script>
+</body>
+</html>

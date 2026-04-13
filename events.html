@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events – SkyGolf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/events.css">
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+  <div class="navlogo">
+    <div class="navlogo-mark"><span>SG</span></div>
+    <div class="navlogo-copy"><strong>SkyGolf</strong><span>Club &amp; Kitchen</span></div>
+  </div>
+  <ul class="links" role="list">
+    <li><a href="./index.html">Home</a></li>
+    <li class="nav-pip" aria-hidden="true"></li>
+    <li><a href="./booking.html">Golf</a></li>
+    <li class="nav-pip" aria-hidden="true"></li>
+    <li><a href="./table-booking.html">Dining</a></li>
+    <li class="nav-pip" aria-hidden="true"></li>
+    <li><a href="./menu.html">Menu</a></li>
+    <li class="nav-pip" aria-hidden="true"></li>
+    <li><a href="./events.html">Events</a></li>
+  </ul>
+  <div class="nav-right">
+    <div id="userGreeting" class="user-greeting">
+      <span class="greeting-star">✦</span>
+      <span id="greetingName"></span>
+    </div>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="menu-bg-glow"></div>
+  <button class="menu-close" id="menuClose" aria-label="Close menu">✕</button>
+  <div class="menu-brand"><div class="menu-brand-mark">SG</div><span>SkyGolf</span></div>
+  <div class="menu-items">
+    <a class="menu-btn" href="./index.html">Home</a>
+    <a class="menu-btn" href="./booking.html">Golf Booking</a>
+    <a class="menu-btn" href="./table-booking.html">Table Booking</a>
+    <a class="menu-btn" href="./menu.html">Menu</a>
+    <a class="menu-btn" href="./events.html">Events</a>
+  </div>
+  <div class="menu-footer" id="menuFooterGreeting"></div>
+</div>
+
+<!-- Background large typography — shifts as you hover each event -->
+<div class="ev-bg-typo" aria-hidden="true">
+  <span class="ev-bg-word" id="evBgWord">EVENTS</span>
+</div>
+
+<main class="ev-main">
+
+  <!-- Topbar -->
+  <div class="ev-topbar">
+    <div class="ev-topbar-left">
+      <span class="ev-page-label">Events &amp; Experiences</span>
+      <div class="ev-live"><span class="live-dot"></span>Booking open</div>
+    </div>
+    <span class="ev-count-badge" id="evCountBadge">6 Events</span>
+  </div>
+
+  <!-- Category filter -->
+  <div class="ev-filter-bar" id="evFilterBar">
+    <button class="evf-tab active" data-cat="all">All</button>
+    <span class="evf-sep">·</span>
+    <button class="evf-tab" data-cat="music">Music</button>
+    <span class="evf-sep">·</span>
+    <button class="evf-tab" data-cat="dining">Dining</button>
+    <span class="evf-sep">·</span>
+    <button class="evf-tab" data-cat="comedy">Comedy</button>
+    <span class="evf-sep">·</span>
+    <button class="evf-tab" data-cat="party">Party</button>
+    <span class="evf-sep">·</span>
+    <button class="evf-tab" data-cat="sports">Sports</button>
+    <span class="evf-sep">·</span>
+    <button class="evf-tab" data-cat="private">Private</button>
+  </div>
+
+  <!-- Book scene -->
+  <div class="book-scene" id="bookScene">
+    <!-- book object injected by JS -->
+  </div>
+
+</main>
+
+<!-- Success popup -->
+<div id="evSuccess" class="ev-popup hidden">
+  <div class="ev-popup-card">
+    <span class="ev-popup-icon">✦</span>
+    <h3>You're booked!</h3>
+    <p>Confirmation details will be sent to your contact.</p>
+  </div>
+</div>
+
+<script src="./js/config.js"></script>
+<script src="./js/nav.js"></script>
+<script src="./js/payment.js"></script>
+<script>guardAuth();</script>
+<script src="./js/events.js"></script>
+</body>
+</html>

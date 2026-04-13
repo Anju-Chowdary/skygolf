@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyGolf - Club & Kitchen</title>
+
+  <!-- DNS prefetch for speed -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+  <!-- Preload Three.js module for faster start -->
+  <link rel="modulepreload" href="https://unpkg.com/three@0.160.0/build/three.module.js">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+  <div id="scene-container"></div>
+  <div id="impact-flash"></div>
+  <div id="impact-ripple"></div>
+
+  <div class="brand" id="brand">
+    <div class="brand-mark">SG</div>
+    <div class="brand-copy">
+      <p>SkyGolf</p>
+      <span>Club & Kitchen</span>
+    </div>
+  </div>
+
+  <div class="home" id="home">
+    <nav class="nav" id="mainNav">
+
+      <!-- Logo (left) -->
+      <div class="navlogo">
+        <div class="navlogo-mark">
+          <span>SG</span>
+        </div>
+        <div class="navlogo-copy">
+          <strong>SkyGolf</strong>
+          <span>Club & Kitchen</span>
+        </div>
+      </div>
+
+      <!-- Links (center) -->
+      <ul class="links" role="list">
+        <li><a href="./index.html">Home</a></li>
+        <li class="nav-pip" aria-hidden="true"></li>
+        <li><a href="./booking.html">Golf</a></li>
+        <li class="nav-pip" aria-hidden="true"></li>
+        <li><a href="./table-booking.html">Dining</a></li>
+        <li class="nav-pip" aria-hidden="true"></li>
+        <li><a href="./menu.html">Menu</a></li>
+        <li class="nav-pip" aria-hidden="true"></li>
+        <li><a href="./events.html">Events</a></li>
+      </ul>
+
+      <!-- Right side: greeting + burger -->
+      <div class="nav-right">
+        <div id="userGreeting" class="user-greeting">
+          <span class="greeting-star">✦</span>
+          <span id="greetingName"></span>
+        </div>
+        <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </nav>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+      <div class="menu-bg-glow"></div>
+      <button class="menu-close" id="menuClose" aria-label="Close menu">✕</button>
+
+      <div class="menu-brand">
+        <div class="menu-brand-mark">SG</div>
+        <span>SkyGolf</span>
+      </div>
+
+      <div class="menu-items">
+        <a class="menu-btn" href="./index.html">Home</a>
+        <a class="menu-btn" href="./booking.html">Golf Booking</a>
+        <a class="menu-btn" href="./table-booking.html">Table Booking</a>
+        <a class="menu-btn" href="./menu.html">Menu</a>
+        <a class="menu-btn" href="./events.html">Events</a>
+      </div>
+
+      <div class="menu-footer" id="menuFooterGreeting"></div>
+    </div>
+
+    <main class="homepage-main">
+      <section class="hero" id="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Luxury golf, dining, and late-night atmosphere</span>
+          <h1>SkyGolf</h1>
+          <h2>Club & Kitchen</h2>
+          <p>Golf gets you here. The food makes you stay.</p>
+          <div class="hero-actions">
+            <a class="primary-btn" href="./booking.html">Book Golf</a>
+            <a class="secondary-btn" href="./table-booking.html">Reserve Table</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="action-section">
+        <div class="section-heading compact-heading">
+          <span>Quick actions</span>
+          <h3>Choose what you want to do next.</h3>
+        </div>
+
+        <div class="action-grid">
+          <a class="action-card" href="./booking.html">
+            <div class="action-icon">○</div>
+            <h4>Book Golf</h4>
+            <p>Reserve a premium simulator bay for private or group play.</p>
+          </a>
+          <a class="action-card" href="./table-booking.html">
+            <div class="action-icon">□</div>
+            <h4>Reserve Table</h4>
+            <p>Book dining or bar seating for a polished club experience.</p>
+          </a>
+          <a class="action-card" href="./menu.html">
+            <div class="action-icon">◇</div>
+            <h4>Order Food</h4>
+            <p>Explore the kitchen and drinks menu with a clean, premium flow.</p>
+          </a>
+          <a class="action-card" href="./events.html">
+            <div class="action-icon">✦</div>
+            <h4>Book Event</h4>
+            <p>Plan a private night, celebration, or hosted venue booking.</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="pricing-home">
+        <div class="section-heading compact-heading">
+          <span>Golf pricing</span>
+          <h3>Simple pricing. Clear choices.</h3>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="pricing-card">
+            <span>Weekday</span>
+            <strong>From ₹2,500</strong>
+            <p>Premium bay sessions for daytime and early evening bookings.</p>
+          </article>
+          <article class="pricing-card">
+            <span>Peak Night</span>
+            <strong>From ₹3,800</strong>
+            <p>Prime-time golf with the full SkyGolf night atmosphere.</p>
+          </article>
+          <article class="pricing-card">
+            <span>VIP Groups</span>
+            <strong>Custom</strong>
+            <p>Hosted pricing for celebrations, office socials, and private groups.</p>
+          </article>
+        </div>
+
+        <div class="pricing-cta">
+          <a class="secondary-btn" href="./pricing.html">View Full Pricing</a>
+        </div>
+      </section>
+
+      <section class="contact-home">
+        <div class="section-heading compact-heading left-heading">
+          <span>Contact & location</span>
+          <h3>Visit, call, or message SkyGolf.</h3>
+        </div>
+
+        <div class="contact-layout">
+          <div class="map-card">
+            <iframe
+              title="SkyGolf Location"
+              src="https://www.google.com/maps?q=Hyderabad&z=12&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+
+          <div class="contact-card-home">
+            <div class="contact-row">
+              <span>Phone</span>
+              <strong>+91 90000 00000</strong>
+            </div>
+            <div class="contact-row">
+              <span>WhatsApp</span>
+              <strong>+91 90000 00000</strong>
+            </div>
+            <div class="contact-row">
+              <span>Timings</span>
+              <strong>12 PM – 1 AM</strong>
+            </div>
+            <div class="contact-row">
+              <span>Location</span>
+              <strong>Hyderabad, India</strong>
+            </div>
+            <div class="contact-actions">
+              <a class="primary-btn contact-btn" href="./contact.html">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script type="module" src="./js/index.js"></script>
+</body>
+</html>

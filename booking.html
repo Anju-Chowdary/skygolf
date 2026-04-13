@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golf Booking – SkyGolf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/booking.css">
+</head>
+<body>
+
+<video autoplay muted loop playsinline class="bg-video">
+  <source src="./assets/booking-bg.mp4" type="video/mp4">
+</video>
+<div class="bg-overlay"></div>
+
+<nav class="nav" id="mainNav">
+  <div class="navlogo">
+    <div class="navlogo-mark"><span>SG</span></div>
+    <div class="navlogo-copy"><strong>SkyGolf</strong><span>Club &amp; Kitchen</span></div>
+  </div>
+  <ul class="links" role="list">
+    <li><a href="./index.html">Home</a></li>
+    <li class="nav-pip" aria-hidden="true"></li>
+    <li><a href="./booking.html">Golf</a></li>
+    <li class="nav-pip" aria-hidden="true"></li>
+    <li><a href="./table-booking.html">Dining</a></li>
+    <li class="nav-pip" aria-hidden="true"></li>
+    <li><a href="./menu.html">Menu</a></li>
+    <li class="nav-pip" aria-hidden="true"></li>
+    <li><a href="./events.html">Events</a></li>
+  </ul>
+  <div class="nav-right">
+    <div id="userGreeting" class="user-greeting">
+      <span class="greeting-star">✦</span>
+      <span id="greetingName"></span>
+    </div>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="menu-bg-glow"></div>
+  <button class="menu-close" id="menuClose" aria-label="Close menu">✕</button>
+  <div class="menu-brand"><div class="menu-brand-mark">SG</div><span>SkyGolf</span></div>
+  <div class="menu-items">
+    <a class="menu-btn" href="./index.html">Home</a>
+    <a class="menu-btn" href="./booking.html">Golf Booking</a>
+    <a class="menu-btn" href="./table-booking.html">Table Booking</a>
+    <a class="menu-btn" href="./menu.html">Menu</a>
+    <a class="menu-btn" href="./events.html">Events</a>
+  </div>
+  <div class="menu-footer" id="menuFooterGreeting"></div>
+</div>
+
+<main class="tb-main">
+
+  <div class="tb-topbar">
+    <span class="tb-label">Golf Bay Booking</span>
+    <div class="tb-live">
+      <span class="live-dot"></span>
+      <span>Open now · 9 AM – 10 PM</span>
+    </div>
+  </div>
+
+  <div class="tb-core">
+
+    <!-- LEFT: Bay options -->
+    <div class="tb-left">
+      <span class="zones-label">Choose your session</span>
+      <div class="tb-zones" id="zoneCards">
+
+        <div class="zone-card zone-indoor zone-feature selected" data-type="Standard Bay" onclick="selectZone(this)">
+          <div class="zone-shimmer"></div>
+          <div class="zone-content">
+            <div class="zone-text">
+              <span class="zone-num">01</span>
+              <div class="zone-info">
+                <h3>Standard Bay</h3>
+                <p>Full-swing simulator with Trackman technology.</p>
+                <span class="zone-cap">Up to 4 players · 1 hour</span>
+              </div>
+            </div>
+            <div class="zone-3d-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              </svg>
+            </div>
+          </div>
+          <span class="zone-arrow">→</span>
+        </div>
+
+        <div class="zone-row">
+          <div class="zone-card zone-outdoor zone-compact" data-type="Premium Bay" onclick="selectZone(this)">
+            <div class="zone-shimmer"></div>
+            <div class="zone-content">
+              <div class="zone-text">
+                <span class="zone-num">02</span>
+                <div class="zone-info">
+                  <h3>Premium Bay</h3>
+                  <span class="zone-cap">Up to 6 players · 2 hours</span>
+                </div>
+              </div>
+              <div class="zone-3d-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 20h20M4 20l4-12 4 6 4-6 4 12"/>
+                </svg>
+              </div>
+            </div>
+            <span class="zone-arrow">→</span>
+          </div>
+
+          <div class="zone-card zone-vip zone-compact" data-type="VIP Bay" onclick="selectZone(this)">
+            <div class="zone-shimmer"></div>
+            <div class="zone-content">
+              <div class="zone-text">
+                <span class="zone-num">03</span>
+                <div class="zone-info">
+                  <h3>VIP Bay</h3>
+                  <span class="zone-cap">Up to 8 players · 3 hours</span>
+                </div>
+              </div>
+              <div class="zone-3d-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/>
+                </svg>
+              </div>
+            </div>
+            <span class="zone-arrow">→</span>
+          </div>
+        </div>
+
+      </div>
+      <p class="zone-note">
+        All bays include Trackman launch monitor &amp; world course library.<br>
+        Food &amp; drinks can be ordered directly to your bay.
+      </p>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="tb-form-card">
+
+      <div class="form-rule">
+        <div class="form-rule-line"></div>
+        <span class="form-rule-label">Bay Reservation</span>
+      </div>
+
+      <div class="form-zone-chip" id="formZoneChip">
+        <span class="fzc-swatch fzc-indoor" id="fzcSwatch"></span>
+        <span id="fzcLabel">Standard Bay · up to 4 players</span>
+        <span class="fzc-edit">change ↑</span>
+      </div>
+
+      <!-- Dynamic price badge -->
+      <div class="bk-price-badge" id="priceBadge" style="display:none"></div>
+
+      <div class="form-field" id="fieldDate">
+        <label for="date">Date</label>
+        <input type="date" id="date" class="tb-input">
+      </div>
+
+      <div class="form-field" id="fieldTime">
+        <label>Time Slot</label>
+        <div class="time-grid" id="slots"></div>
+      </div>
+
+      <div class="form-field">
+        <label>Players</label>
+        <div class="guest-stepper">
+          <button class="stepper-btn" id="guestMinus" onclick="changeGuests(-1)" aria-label="Remove player">−</button>
+          <div class="stepper-display">
+            <span id="guestCount">2</span>
+            <small>players</small>
+          </div>
+          <button class="stepper-btn" id="guestPlus" onclick="changeGuests(1)" aria-label="Add player">+</button>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>Duration</label>
+        <select id="duration" class="tb-input" style="width:100%;background:rgba(25,23,23,0.5);border:1px solid rgba(243,233,213,0.12);color:#f3e9d5;padding:0.62rem 0.8rem;border-radius:10px;font-family:'Manrope',sans-serif;font-size:0.82rem;outline:none;cursor:pointer">
+          <option value="1 hour">1 Hour</option>
+          <option value="2 hours">2 Hours</option>
+          <option value="3 hours">3 Hours</option>
+        </select>
+      </div>
+
+      <button class="tb-book-btn" id="bookBtn" onclick="bookGolf()">Reserve Bay</button>
+    </div>
+
+  </div>
+
+  <!-- Booking history -->
+  <section class="tb-history-section">
+    <div class="tb-section-divider">
+      <div class="divider-line"></div>
+      <span class="divider-label">Your Golf Bookings</span>
+      <div class="divider-line"></div>
+    </div>
+    <div class="booking-scroll" id="bookingList">
+      <div class="panel-loader">
+        <div class="dot-spin"></div><div class="dot-spin"></div><div class="dot-spin"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tb-policy">
+    <div class="policy-item"><span class="policy-icon">○</span>Open 9 AM – 10 PM daily</div>
+    <div class="policy-divider"></div>
+    <div class="policy-item"><span class="policy-icon">◇</span>Cancel up to 2 hours before</div>
+    <div class="policy-divider"></div>
+    <div class="policy-item"><span class="policy-icon">✦</span>Private coaching available on request</div>
+  </div>
+
+</main>
+
+<!-- Fallback confirm popup (used when payment.js is not active or price = 0) -->
+<div id="popup" class="popup hidden">
+  <div class="popup-card">
+    <h3>Confirm Booking</h3>
+    <p id="popupContent"></p>
+    <div class="popup-actions">
+      <button class="popup-confirm-btn" onclick="confirmBooking()">Confirm Reservation</button>
+      <button class="popup-cancel-btn" onclick="document.getElementById('popup').classList.add('hidden')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="successPopup" class="popup hidden">
+  <div class="popup-card success">
+    <span class="success-icon">✦</span>
+    <h3>Bay Reserved!</h3>
+    <p>See you on the course. Your bay will be ready.</p>
+  </div>
+</div>
+
+<script src="./js/config.js"></script>
+<script src="./js/nav.js"></script>
+<script src="./js/payment.js"></script>
+<script>guardAuth();</script>
+<script src="./js/booking.js"></script>
+</body>
+</html>

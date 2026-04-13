@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+
+<title>SkyGolf Booking</title>
+
+<style>
+
+/* ===== BASE ===== */
+body{
+  margin:0;
+  background:#0c0808;
+  font-family:"Manrope",sans-serif;
+  color:#f3e9d5;
+}
+
+.container{
+  max-width:420px;
+  margin:auto;
+  padding:22px 18px 40px;
+}
+
+/* ===== TITLE ===== */
+.title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:2.6rem;
+  line-height:1;
+}
+
+.subtitle{
+  font-size:0.75rem;
+  opacity:0.6;
+  margin-bottom:22px;
+}
+
+/* ===== GLASS BLOCK ===== */
+.block{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:16px;
+  backdrop-filter:blur(16px);
+}
+
+/* ===== SUMMARY ===== */
+.summary span{
+  display:flex;
+  justify-content:space-between;
+  font-size:0.8rem;
+  margin:4px 0;
+}
+
+/* ===== INPUT ===== */
+input{
+  width:100%;
+  background:transparent;
+  border:none;
+  color:#fff;
+  font-size:1rem;
+  outline:none;
+}
+
+/* ===== TIME SCROLL ===== */
+.time-scroll{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:5px;
+}
+
+.time{
+  padding:6px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.15);
+  font-size:0.75rem;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:0.2s;
+}
+
+.time.active{
+  background:#f3e9d5;
+  color:#000;
+}
+
+/* ===== GUEST ===== */
+.stepper{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.stepper button{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  border:none;
+  background:rgba(255,255,255,0.08);
+  color:#fff;
+  font-size:18px;
+}
+
+/* ===== SEATING ===== */
+.seats{
+  display:flex;
+  gap:8px;
+}
+
+.seat{
+  flex:1;
+  padding:8px;
+  text-align:center;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.15);
+  font-size:0.75rem;
+}
+
+.seat.active{
+  background:#f3e9d5;
+  color:#000;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:999px;
+  background:#9e1a1a;
+  color:#fff;
+  font-weight:600;
+  letter-spacing:0.18em;
+  margin-top:12px;
+  box-shadow:0 8px 20px rgba(158,26,26,0.4);
+}
+
+/* ===== ERROR ===== */
+.error{
+  border:1px solid red !important;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="title">Reserve Table</div>
+<div class="subtitle">SkyGolf Dining</div>
+
+<!-- SUMMARY -->
+<div class="block summary">
+  <span><b>Date</b><span id="sDate">—</span></span>
+  <span><b>Time</b><span id="sTime">—</span></span>
+  <span><b>Guests</b><span id="sGuest">2</span></span>
+  <span><b>Type</b><span id="sType">Indoor</span></span>
+</div>
+
+<!-- DATE -->
+<div class="block">
+  <input type="date" id="date">
+</div>
+
+<!-- TIME -->
+<div class="block">
+  <div class="time-scroll" id="times"></div>
+</div>
+
+<!-- GUEST -->
+<div class="block stepper">
+  <button onclick="g(-1)">−</button>
+  <span id="guest">2</span>
+  <button onclick="g(1)">+</button>
+</div>
+
+<!-- SEATING -->
+<div class="block seats">
+  <div class="seat active" onclick="seat(this)">Indoor</div>
+  <div class="seat" onclick="seat(this)">Outdoor</div>
+  <div class="seat" onclick="seat(this)">VIP</div>
+</div>
+
+<button class="btn" onclick="book()">RESERVE</button>
+
+</div>
+
+<script>
+
+let guest=2, time="", type="Indoor";
+
+/* TIME */
+const t=document.getElementById("times");
+
+for(let i=11;i<=23;i++) add(i);
+for(let i=0;i<=1;i++) add(i);
+
+function add(h){
+  let d=document.createElement("div");
+  d.className="time";
+  d.innerText=f(h);
+
+  d.onclick=()=>{
+    document.querySelectorAll(".time").forEach(x=>x.classList.remove("active"));
+    d.classList.add("active");
+    time=f(h);
+    update();
+  };
+
+  t.appendChild(d);
+}
+
+function f(h){
+  if(h==0) return "12 AM";
+  if(h<12) return h+" AM";
+  if(h==12) return "12 PM";
+  return (h-12)+" PM";
+}
+
+/* GUEST */
+function g(x){
+  guest=Math.max(1,guest+x);
+  document.getElementById("guest").innerText=guest;
+  update();
+}
+
+/* SEAT */
+function seat(el){
+  document.querySelectorAll(".seat").forEach(x=>x.classList.remove("active"));
+  el.classList.add("active");
+  type=el.innerText;
+  update();
+}
+
+/* UPDATE */
+function update(){
+  sDate.innerText=date.value||"—";
+  sTime.innerText=time||"—";
+  sGuest.innerText=guest;
+  sType.innerText=type;
+}
+
+/* BOOK */
+function book(){
+  if(!date.value || !time){
+    document.getElementById("date").classList.add("error");
+    return;
+  }
+  alert("Confirmed ✅");
+}
+
+</script>
+
+</body>
+</html>

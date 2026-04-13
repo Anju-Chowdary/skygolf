@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golf Pricing – SkyGolf Club & Kitchen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/index.css">
+  <style>
+    body { background: #0e0c0c; min-height: 100vh; }
+
+    .pr-hero {
+      padding-top: 100px; padding-bottom: 2rem;
+      text-align: center;
+    }
+    .pr-hero-label {
+      font-size: 0.52rem; letter-spacing: 0.38em; text-transform: uppercase;
+      color: rgba(243,233,213,0.3); font-weight: 700; display: block; margin-bottom: 0.8rem;
+    }
+    .pr-hero-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem); font-weight: 700; line-height: 0.9;
+      color: #f3e9d5; letter-spacing: -0.04em; margin-bottom: 0.9rem;
+    }
+    .pr-hero-sub {
+      font-size: 0.72rem; color: rgba(243,233,213,0.38); letter-spacing: 0.02em;
+    }
+
+    /* Main grid */
+    .pr-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1.5rem;
+      padding: 3rem 6vw 5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .pr-card {
+      background: #141111;
+      border: 1px solid rgba(243,233,213,0.07);
+      border-radius: 20px;
+      padding: 2rem 1.8rem 1.8rem;
+      display: flex; flex-direction: column; gap: 0.9rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .pr-card:hover {
+      border-color: rgba(243,233,213,0.14);
+      transform: translateY(-3px);
+    }
+    .pr-card.featured {
+      border-color: rgba(226,97,39,0.4);
+      background: linear-gradient(145deg,#1a1110,#141111);
+    }
+    .pr-card.featured::before {
+      content: "Most Popular";
+      position: absolute; top: 1.1rem; right: 1.1rem;
+      font-size: 0.5rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase;
+      color: #e26127; background: rgba(226,97,39,0.12); border: 1px solid rgba(226,97,39,0.3);
+      padding: 0.2rem 0.55rem; border-radius: 999px;
+    }
+
+    .pr-card-label {
+      font-size: 0.52rem; font-weight: 800; letter-spacing: 0.28em; text-transform: uppercase;
+      color: rgba(243,233,213,0.28);
+    }
+    .pr-card-name {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.65rem; font-weight: 700; color: #f3e9d5; line-height: 1;
+    }
+    .pr-card-price {
+      display: flex; align-items: baseline; gap: 0.3rem;
+    }
+    .pr-card-price strong {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.4rem; font-weight: 700; color: #e26127; line-height: 1;
+    }
+    .pr-card-price span {
+      font-size: 0.68rem; color: rgba(243,233,213,0.35);
+    }
+    .pr-card-divider {
+      height: 1px; background: rgba(243,233,213,0.06);
+    }
+    .pr-card-features {
+      display: flex; flex-direction: column; gap: 0.55rem;
+      list-style: none; padding: 0; margin: 0;
+    }
+    .pr-card-features li {
+      font-size: 0.72rem; color: rgba(243,233,213,0.6); line-height: 1.4;
+      display: flex; align-items: flex-start; gap: 0.55rem;
+    }
+    .pr-card-features li::before {
+      content: "✦"; color: #e26127; font-size: 0.45rem; margin-top: 0.25rem; flex-shrink: 0;
+    }
+    .pr-card-cta {
+      display: block; text-align: center;
+      font-family: "Manrope", sans-serif; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+      padding: 0.72rem; border-radius: 12px;
+      border: 1px solid rgba(243,233,213,0.18); color: #f3e9d5;
+      background: transparent; margin-top: auto;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .pr-card-cta:hover,
+    .pr-card.featured .pr-card-cta {
+      background: #e26127; border-color: #e26127; color: #fff;
+    }
+    .pr-card.featured .pr-card-cta:hover {
+      background: #c94f1a; border-color: #c94f1a;
+    }
+
+    /* Add-ons section */
+    .pr-addons {
+      max-width: 1200px; margin: 0 auto 5rem;
+      padding: 0 6vw;
+    }
+    .pr-section-head {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+    }
+    .pr-section-label {
+      font-size: 0.52rem; font-weight: 800; letter-spacing: 0.28em;
+      text-transform: uppercase; color: rgba(243,233,213,0.25); white-space: nowrap;
+    }
+    .pr-section-line { flex: 1; height: 1px; background: rgba(243,233,213,0.06); }
+
+    .pr-addon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1px;
+      border: 1px solid rgba(243,233,213,0.06);
+      border-radius: 16px; overflow: hidden;
+    }
+    .pr-addon-item {
+      background: #141111;
+      padding: 1.2rem 1.4rem;
+      display: flex; flex-direction: column; gap: 0.3rem;
+      transition: background 0.15s;
+    }
+    .pr-addon-item:hover { background: #1a1616; }
+    .pr-addon-name {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.05rem; font-weight: 700; color: #f3e9d5;
+    }
+    .pr-addon-price {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1rem; font-weight: 700; color: #e26127;
+    }
+    .pr-addon-desc {
+      font-size: 0.62rem; color: rgba(243,233,213,0.35); line-height: 1.5; margin-top: 0.1rem;
+    }
+
+    /* Policy bar */
+    .pr-policy {
+      display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+      gap: 1rem 2.5rem; padding: 1.5rem 4vw 2.5rem;
+      border-top: 1px solid rgba(243,233,213,0.06);
+      font-size: 0.62rem; color: rgba(243,233,213,0.28); letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+  <div class="navlogo">
+    <div class="navlogo-mark"><span>SG</span></div>
+    <div class="navlogo-copy"><strong>SkyGolf</strong><span>Club &amp; Kitchen</span></div>
+  </div>
+  <ul class="links" role="list">
+    <li><a href="./index.html">Home</a></li>
+    <li class="nav-pip" aria-hidden="true"></li>
+    <li><a href="./booking.html">Golf</a></li>
+    <li class="nav-pip" aria-hidden="true"></li>
+    <li><a href="./table-booking.html">Dining</a></li>
+    <li class="nav-pip" aria-hidden="true"></li>
+    <li><a href="./menu.html">Menu</a></li>
+    <li class="nav-pip" aria-hidden="true"></li>
+    <li><a href="./events.html">Events</a></li>
+  </ul>
+  <div class="nav-right">
+    <div id="userGreeting" class="user-greeting">
+      <span class="greeting-star">✦</span>
+      <span id="greetingName"></span>
+    </div>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="menu-bg-glow"></div>
+  <button class="menu-close" id="menuClose" aria-label="Close menu">✕</button>
+  <div class="menu-brand"><div class="menu-brand-mark">SG</div><span>SkyGolf</span></div>
+  <div class="menu-items">
+    <a class="menu-btn" href="./index.html">Home</a>
+    <a class="menu-btn" href="./booking.html">Golf Booking</a>
+    <a class="menu-btn" href="./table-booking.html">Table Booking</a>
+    <a class="menu-btn" href="./menu.html">Menu</a>
+    <a class="menu-btn" href="./events.html">Events</a>
+  </div>
+  <div class="menu-footer" id="menuFooterGreeting"></div>
+</div>
+
+<!-- Hero -->
+<div class="pr-hero">
+  <span class="pr-hero-label">SkyGolf Club &amp; Kitchen</span>
+  <h1 class="pr-hero-title">Golf Pricing</h1>
+  <p class="pr-hero-sub">All sessions include Trackman launch monitor &amp; world course library</p>
+</div>
+
+<!-- Pricing cards -->
+<div class="pr-grid">
+
+  <div class="pr-card">
+    <span class="pr-card-label">Weekday</span>
+    <div class="pr-card-name">Standard Session</div>
+    <div class="pr-card-price">
+      <strong>₹2,500</strong>
+      <span>/ hour · up to 4 players</span>
+    </div>
+    <div class="pr-card-divider"></div>
+    <ul class="pr-card-features">
+      <li>Monday – Thursday, before 6 PM</li>
+      <li>Standard Bay access with Trackman</li>
+      <li>Full course library (200+ courses)</li>
+      <li>Bay-side food &amp; drinks service</li>
+    </ul>
+    <a href="./booking.html" class="pr-card-cta">Book Now</a>
+  </div>
+
+  <div class="pr-card featured">
+    <span class="pr-card-label">Peak Night</span>
+    <div class="pr-card-name">Evening Session</div>
+    <div class="pr-card-price">
+      <strong>₹3,800</strong>
+      <span>/ hour · up to 4 players</span>
+    </div>
+    <div class="pr-card-divider"></div>
+    <ul class="pr-card-features">
+      <li>Friday – Sunday or after 6 PM daily</li>
+      <li>Premium Bay with Trackman Pro</li>
+      <li>Full course library + tournament modes</li>
+      <li>Priority bay assignment</li>
+      <li>Bay-side food &amp; drinks service</li>
+    </ul>
+    <a href="./booking.html" class="pr-card-cta">Book Now</a>
+  </div>
+
+  <div class="pr-card">
+    <span class="pr-card-label">VIP Bay</span>
+    <div class="pr-card-name">Luxury Package</div>
+    <div class="pr-card-price">
+      <strong>₹5,500</strong>
+      <span>/ hour · up to 8 players</span>
+    </div>
+    <div class="pr-card-divider"></div>
+    <ul class="pr-card-features">
+      <li>Any day, any time</li>
+      <li>VIP Bay — largest layout, private lounge</li>
+      <li>Full suite of simulator modes &amp; games</li>
+      <li>Dedicated food &amp; drinks attendant</li>
+      <li>Complimentary welcome drinks for group</li>
+    </ul>
+    <a href="./booking.html" class="pr-card-cta">Book Now</a>
+  </div>
+
+  <div class="pr-card">
+    <span class="pr-card-label">Corporate / Groups</span>
+    <div class="pr-card-name">Private Buyout</div>
+    <div class="pr-card-price">
+      <strong>Custom</strong>
+      <span>contact for pricing</span>
+    </div>
+    <div class="pr-card-divider"></div>
+    <ul class="pr-card-features">
+      <li>Full venue exclusive access</li>
+      <li>All bays + full dining setup</li>
+      <li>Event coordination included</li>
+      <li>Catering packages available</li>
+      <li>Ideal for team outings, celebrations</li>
+    </ul>
+    <a href="./events.html" class="pr-card-cta">Enquire</a>
+  </div>
+
+</div>
+
+<!-- Add-ons -->
+<div class="pr-addons">
+  <div class="pr-section-head">
+    <span class="pr-section-label">Add-ons</span>
+    <div class="pr-section-line"></div>
+  </div>
+  <div class="pr-addon-grid">
+    <div class="pr-addon-item">
+      <div class="pr-addon-name">Private Coaching</div>
+      <div class="pr-addon-price">₹1,500 / hour</div>
+      <div class="pr-addon-desc">One-on-one session with a certified golf instructor. Book via phone or email.</div>
+    </div>
+    <div class="pr-addon-item">
+      <div class="pr-addon-name">Bay Extension</div>
+      <div class="pr-addon-price">Same rate / 30 min</div>
+      <div class="pr-addon-desc">Extend your session on the spot, subject to bay availability.</div>
+    </div>
+    <div class="pr-addon-item">
+      <div class="pr-addon-name">Drinks Package</div>
+      <div class="pr-addon-price">₹1,200 / person</div>
+      <div class="pr-addon-desc">All-inclusive open bar for your session duration. Select spirits and cocktails.</div>
+    </div>
+    <div class="pr-addon-item">
+      <div class="pr-addon-name">Golf Gear Rental</div>
+      <div class="pr-addon-price">₹400 / set</div>
+      <div class="pr-addon-desc">Full set of rental clubs available. Gloves, balls, and tees included.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Policy -->
+<div class="pr-policy">
+  <span>✦ All prices inclusive of GST</span>
+  <span>◇ Cancel up to 2 hours before session</span>
+  <span>○ Advance booking recommended on weekends</span>
+  <span>✦ Children under 12 play free with a paying adult</span>
+</div>
+
+<script src="./js/config.js"></script>
+<script src="./js/nav.js"></script>
+</body>
+</html>

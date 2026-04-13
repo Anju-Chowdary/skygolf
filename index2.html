@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fasttracks Car Care</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
+body{background:#0a0f1c;color:#fff;overflow-x:hidden}
+
+/* NAVBAR */
+nav{
+  position:fixed;
+  width:100%;
+  top:0;
+  display:flex;
+  justify-content:center;
+  padding:15px;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+nav a{margin:0 20px;color:#fff;text-decoration:none}
+
+/* HERO */
+.hero{
+  height:100vh;
+  background:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70') center/cover;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+.hero h1{
+  font-size:3rem;
+  background:linear-gradient(90deg,#00f0ff,#0072ff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.btn{
+  margin-top:20px;
+  padding:12px 25px;
+  background:#00f0ff;
+  color:#000;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+}
+
+/* SECTION */
+.section{padding:80px 20px;text-align:center}
+
+/* BEFORE AFTER */
+.container{
+  position:relative;
+  width:80%;
+  margin:auto;
+}
+.container img{width:100%}
+.overlay{
+  position:absolute;
+  top:0;
+  left:0;
+  width:50%;
+  overflow:hidden;
+}
+.slider{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:50%;
+  width:3px;
+  background:#00f0ff;
+  cursor:ew-resize;
+}
+
+/* SERVICES */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  margin-top:40px;
+}
+.card{
+  background:#111827;
+  padding:20px;
+  border-radius:15px;
+  transition:.3s;
+  box-shadow:0 0 15px rgba(0,255,255,0.2);
+}
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 25px #00f0ff;
+}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:10px;
+}
+.gallery img{
+  width:100%;
+  border-radius:10px;
+}
+
+/* REVIEWS */
+.review{
+  margin-top:20px;
+  padding:20px;
+  background:#111;
+  border-radius:10px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  padding:15px;
+  border-radius:50%;
+  color:white;
+  font-size:20px;
+}
+
+/* FOOTER */
+footer{
+  padding:20px;
+  text-align:center;
+  background:#020617;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#">Home</a>
+  <a href="#slider">Transform</a>
+  <a href="#services">Services</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>Transform Your Car Into a Beast 🔥</h1>
+    <button class="btn">Get Quote</button>
+  </div>
+</div>
+
+<!-- BEFORE AFTER -->
+<div class="section" id="slider">
+  <h2>Before / After Transformation</h2>
+  <div class="container">
+    <img src="https://images.unsplash.com/photo-1493238792000-8113da705763">
+    <div class="overlay" id="overlay">
+      <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a">
+    </div>
+    <div class="slider" id="sliderLine"></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="section" id="services">
+  <h2>Our Services</h2>
+  <div class="cards">
+    <div class="card">PPF & Ceramic Coating</div>
+    <div class="card">Car Wraps</div>
+    <div class="card">Interior Lighting</div>
+    <div class="card">Alloy Wheels</div>
+    <div class="card">Sound Systems</div>
+    <div class="card">Performance Tuning</div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="section" id="gallery">
+  <h2>Our Work</h2>
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1511910849309-0dffb2c3f6f2">
+    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70">
+    <img src="https://images.unsplash.com/photo-1493238792000-8113da705763">
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div class="section">
+  <h2>Customer Reviews</h2>
+  <div class="review">“Amazing transformation! My car looks brand new 🔥”</div>
+  <div class="review">“Best modification shop in Hyderabad!”</div>
+</div>
+
+<!-- CONTACT -->
+<div class="section" id="contact">
+  <h2>Contact Us</h2>
+  <p>Call or WhatsApp to book your slot</p>
+</div>
+
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/919999999999">💬</a>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 Fasttracks Car Care
+</footer>
+
+<script>
+const slider = document.getElementById("sliderLine");
+const overlay = document.getElementById("overlay");
+
+slider.onmousedown = function(){
+  document.onmousemove = function(e){
+    let x = e.clientX - overlay.parentElement.offsetLeft;
+    overlay.style.width = x + "px";
+    slider.style.left = x + "px";
+  }
+}
+</script>
+
+</body>
+</html>
