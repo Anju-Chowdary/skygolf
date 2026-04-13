@@ -7,6 +7,7 @@ import os, random, datetime, jwt, csv, io, uuid
 from functools import wraps
 from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
+from pymongo import MongoClient
 
 
 load_dotenv()
@@ -15,7 +16,7 @@ app = Flask(__name__, static_folder='.', static_url_path='')
 CORS(app, origins="*")
 
 # ── MongoDB ───────────────────────────────────────────────────────────────────
-MONGO_URI = os.environ.get("MONGO_URI", "mongodb://localhost:27017")
+MONGO_URI = "mongodb+srv://autodevai10_db_user:Hariradha88@cluster0.wzqq523.mongodb.net/skygolf?retryWrites=true&w=majority"
 client    = MongoClient(MONGO_URI)
 db        = client["skygolf"]
 
