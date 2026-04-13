@@ -103,7 +103,7 @@ def admin_required(f):
 
 @app.route("/")
 def home():
-    return send_from_directory('.', 'index.html')
+    return send_from_directory(os.getcwd(), "index.html")
 
 
 # ── OTP ───────────────────────────────────────────────────────────────────────
