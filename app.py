@@ -8,9 +8,10 @@ from functools import wraps
 from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
 
+
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='.', static_url_path='')
 CORS(app, origins="*")
 
 # ── MongoDB ───────────────────────────────────────────────────────────────────
@@ -102,7 +103,7 @@ def admin_required(f):
 
 @app.route("/")
 def home():
-    return jsonify({"status": "SkyGolf API running ✅", "version": "3.0"})
+    return send_from_directory('.', 'index.html')
 
 
 # ── OTP ───────────────────────────────────────────────────────────────────────
