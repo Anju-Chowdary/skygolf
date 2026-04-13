@@ -39,7 +39,7 @@ async function sendOTP() {
     });
     const data = await res.json();
     if (data.success) {
-      setMsg("OTP sent — check your phone.", "success");
+      setMsg(`Your OTP is ${data.otp}`, "success");
       step2.classList.add("visible");
       document.getElementById("otp").focus();
     } else {
