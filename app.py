@@ -106,6 +106,10 @@ def home():
     return send_from_directory(os.getcwd(), "index.html")
 
 
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory(os.getcwd(), path)
+
 # ── OTP ───────────────────────────────────────────────────────────────────────
 @app.route("/send-otp", methods=["POST"])
 def send_otp():
