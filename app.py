@@ -127,9 +127,14 @@ def send_otp():
         {"$set": {"otp": otp, "name": name, "created": datetime.datetime.utcnow()}},
         upsert=True
     )
-    # In production: replace with MSG91 / Twilio SMS call
+
     print(f"[OTP] {phone} → {otp}")
-    return jsonify({"success": True, "message": "OTP sent — check your phone"})
+
+    return jsonify({
+        "success": True,
+        "message": "OTP generated",
+        "otp": otp
+    })
 
 
 @app.route("/verify-otp", methods=["POST"])
